@@ -97,8 +97,6 @@ def main():
         
     elif args.task_name == "candlestick_image":  
         with mp.Pool(processes=NUM_CORES) as pool:
-            # 주의: 실제로는 stock_csv 데이터를 읽어 분할해야 함
-            # 예: pandas로 CSV 읽기 -> 행 분할 -> 각 프로세스에 할당
             chunk_args = [(args.candel_dir, args.stock_csv, args.seq_len, 
                           args.window_len, args.end_date) for _ in range(NUM_CORES)]
             pool.map(process_candlestick_image, chunk_args)
@@ -148,6 +146,7 @@ def main():
         with mp.Pool(processes=NUM_CORES) as pool:
             pool.map(process_image_similarity, chunk_args)
 
+    # bollinger band area miou
     elif args.task_name == "image_bband":
         sorted_keys = sorted(os.listdir(args.bollinger_img_path), key=lambda x: pd.to_datetime('-'.join(x.split('-')[1:4]).replace('.png', ''), format='%Y-%m-%d'))
         total_features = len(sorted_keys)
@@ -169,6 +168,7 @@ def main():
         with mp.Pool(processes=NUM_CORES) as pool:
             pool.map(process_image_bband, chunk_args)
 
+    # calculating DTW score
     elif args.task_name == "numeric_DTW":
         files = [f for f in os.listdir(args.data_path) if f.endswith('.csv')]
         sorted_files = sorted(files, key=lambda x: int(x.split('-')[0]))
