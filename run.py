@@ -47,7 +47,7 @@ parser.add_argument('--data_path', type=str, default='./data/numeric_data/', hel
 
 
 parser.add_argument('--start_index', type=int, default=30761, help='origin data directory')
-parser.add_argument('--end_index', type=int, default=40408, help='origin data directory')
+parser.add_argument('--end_index', type=int, default=None, help='end index for processing (optional, defaults to total length)')
 
 ## ======================================================================================================================================================
 # 헬퍼 함수 정의
@@ -129,63 +129,65 @@ def main():
             features = pickle.load(f)
         
         sorted_keys = sorted(features.keys(), key=lambda x: int(x.split('-')[0]))
-        
         total_features = len(sorted_keys)
+        
         if args.start_index >= total_features:
             raise ValueError(f"start_index {args.start_index} is larger than total features {total_features}")
-
-        chunk_size = (total_features - args.start_index) // NUM_CORES
+        end_index = args.end_index if args.end_index is not None else total_features
+        if end_index > total_features:
+            end_index = total_features
+        
+        chunk_size = (end_index - args.start_index) // NUM_CORES
         chunk_args = []
-
+        
         for i in range(NUM_CORES):
             start_idx = args.start_index + (i * chunk_size)
-            chunk_args.append((args.save_root, features, sorted_keys, start_idx))
-
+            end_idx = start_idx + chunk_size if i < NUM_CORES - 1 else end_index
+            chunk_args.append((args.save_root, features, sorted_keys, start_idx, end_idx))
+        
         with mp.Pool(processes=NUM_CORES) as pool:
             pool.map(process_image_similarity, chunk_args)
 
-    # calculating miou
     elif args.task_name == "image_bband":
-        with open(args.feature_pkl, 'rb') as f:
-            features = pickle.load(f)
-        
-        sorted_keys = sorted(features.keys(), key=lambda x: pd.to_datetime('-'.join(x.split('-')[1:4]).replace('.png', ''), format='%Y-%m-%d'))
-        
+        sorted_keys = sorted(os.listdir(args.bollinger_img_path), key=lambda x: pd.to_datetime('-'.join(x.split('-')[1:4]).replace('.png', ''), format='%Y-%m-%d'))
         total_features = len(sorted_keys)
+        
         if args.start_index >= total_features:
             raise ValueError(f"start_index {args.start_index} is larger than total features {total_features}")
+        end_index = args.end_index if args.end_index is not None else total_features
+        if end_index > total_features:
+            end_index = total_features
         
-        chunk_size = (total_features - args.start_index) // NUM_CORES
+        chunk_size = (end_index - args.start_index) // NUM_CORES
         chunk_args = []
         
         for i in range(NUM_CORES):
             start_idx = args.start_index + (i * chunk_size)
-            chunk_args.append((args.save_root, args.bollinger_img_path, sorted_keys, start_idx))
+            end_idx = start_idx + chunk_size if i < NUM_CORES - 1 else end_index
+            chunk_args.append((args.save_root, args.bollinger_img_path, sorted_keys, start_idx, end_idx))
         
         with mp.Pool(processes=NUM_CORES) as pool:
             pool.map(process_image_bband, chunk_args)
-    
-    # DTW score
+
     elif args.task_name == "numeric_DTW":
-        # 파일 목록을 인덱스순으로 정렬
         files = [f for f in os.listdir(args.data_path) if f.endswith('.csv')]
         sorted_files = sorted(files, key=lambda x: int(x.split('-')[0]))
-        
         total_files = len(sorted_files)
+        
         if args.start_index >= total_files:
             raise ValueError(f"start_index {args.start_index} is larger than total files {total_files}")
+        end_index = args.end_index if args.end_index is not None else total_files
+        if end_index > total_files:
+            end_index = total_files
         
-        # 멀티프로세싱을 위한 청크 크기 계산
-        chunk_size = (total_files - args.start_index) // NUM_CORES
+        chunk_size = (end_index - args.start_index) // NUM_CORES
         chunk_args = []
         
-        # 각 프로세스에 작업 분배
         for i in range(NUM_CORES):
             start_idx = args.start_index + (i * chunk_size)
-            chunk_args.append((args.save_root, args.data_path, sorted_files, start_idx))
-            # 각 프로세스는 start_idx부터 끝까지 처리하며, 비교는 0부터 현재 인덱스 직전까지 수행
+            end_idx = start_idx + chunk_size if i < NUM_CORES - 1 else end_index
+            chunk_args.append((args.save_root, args.data_path, sorted_files, start_idx, end_idx))
         
-        # 멀티프로세싱 실행
         with mp.Pool(processes=NUM_CORES) as pool:
             pool.map(process_numeric_DTW, chunk_args)
             

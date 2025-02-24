@@ -4,4 +4,5 @@ python run.py \
     --save_root ./results/Base_Feature_csv/ \
     --feature_pkl ./data/img_data/IMG_vit_features.pkl \
     --start_index 30761 \
+    --end_index 47409
 
