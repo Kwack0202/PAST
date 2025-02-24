@@ -1,0 +1,33 @@
+from common_imports import *
+
+def analyze_trend(data, phase, index):
+    if data.empty:
+        return None
+    
+    pricing = data['close']
+    x = np.arange(len(pricing))
+    y = pricing.values
+    z = np.polyfit(x, y, 1)
+    p = np.poly1d(z)
+    
+    # 평균 / 표준편차 생성
+    mean_close = pricing.mean()
+    std_close = pricing.std()
+    
+    # 상방, 하방 라인 생성
+    upper_bound = mean_close + std_close * 0.43 
+    lower_bound = mean_close - std_close * 0.43
+    trend_point = z[0] * x[-1] + z[1]
+    
+    if trend_point > upper_bound:
+        trend = 'up'
+    elif lower_bound < trend_point < upper_bound:
+        trend = 'sideway_up' if z[0] > 0 else 'sideway_down'
+    else:
+        trend = 'down'
+    
+    return {'date': data['time'].dt.date.iloc[-1], 
+            'time': data['time'].dt.time.iloc[-1],
+            'index': f'{index}-{data["time"].dt.date.iloc[-1]}.png', 
+            'trend': trend, 
+            'phase': phase}
