@@ -4,6 +4,7 @@ from Similarity.image_FE import *
 from Similarity.image_similarity import *
 from Similarity.image_bband import *
 from Similarity.numeric_DTW import *
+from Similarity.image_similarity_diem import *
 import multiprocessing as mp
 
 fix_seed = 42
@@ -74,6 +75,9 @@ def process_image_similarity(chunk):
 
 def process_image_bband(chunk):
     return image_bband(*chunk)
+
+def process_image_similarity_diem(chunk):
+    return image_similarity_diem(*chunk)
 
 def process_numeric_DTW(chunk):
     return numeric_DTW(*chunk)
@@ -168,6 +172,31 @@ def main():
         with mp.Pool(processes=NUM_CORES) as pool:
             pool.map(process_image_bband, chunk_args)
 
+    # Calculating DIEM score
+    elif args.task_name == "image_similarity_diem":
+        with open(args.feature_pkl, 'rb') as f:
+            features = pickle.load(f)
+        
+        sorted_keys = sorted(features.keys(), key=lambda x: int(x.split('-')[0]))
+        total_features = len(sorted_keys)
+        
+        if args.start_index >= total_features:
+            raise ValueError(f"start_index {args.start_index} is larger than total features {total_features}")
+        end_index = args.end_index if args.end_index is not None else total_features
+        if end_index > total_features:
+            end_index = total_features
+        
+        chunk_size = (end_index - args.start_index) // NUM_CORES
+        chunk_args = []
+        
+        for i in range(NUM_CORES):
+            start_idx = args.start_index + (i * chunk_size)
+            end_idx = start_idx + chunk_size if i < NUM_CORES - 1 else end_index
+            chunk_args.append((args.save_root, features, sorted_keys, start_idx, end_idx))
+        
+        with mp.Pool(processes=NUM_CORES) as pool:
+            pool.map(process_image_similarity_diem, chunk_args)
+        
     # calculating DTW score
     elif args.task_name == "numeric_DTW":
         files = [f for f in os.listdir(args.data_path) if f.endswith('.csv')]

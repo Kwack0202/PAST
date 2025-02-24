@@ -1,7 +1,6 @@
 from common_imports import *
 
 def calculate_similarity(metric, vec1, vec2):
-    """유사도 계산 함수 (효율성을 위해 flatten 처리 간소화)"""
     vec1 = np.ravel(vec1)
     vec2 = np.ravel(vec2)
     
@@ -25,19 +24,16 @@ def calculate_similarity(metric, vec1, vec2):
         raise ValueError(f"Unknown similarity metric: {metric}")
 
 def image_similarity(save_root, features_dict, sorted_keys, start_idx, end_idx):
-    """이미지 유사도 계산 함수 (멀티프로세싱용, start_idx부터 end_idx까지 처리)"""
     os.makedirs(save_root, exist_ok=True)
     similarity_metrics = ['cosine', 'euclidean', 'manhattan', 'chebyshev', 
                           'minkowski', 'canberra', 'braycurtis', 'wasserstein']
     
-    # start_idx부터 end_idx까지 처리
     for i in tqdm(range(start_idx, end_idx), desc=f'Calculating image similarity (from {start_idx} to {end_idx})'):
         try:
             current_image_key = sorted_keys[i]
             current_image_features = features_dict[current_image_key]
             similarity_data = []
             
-            # 과거 이미지들과 비교 (0부터 i-1까지)
             for j in range(i):
                 compare_image_key = sorted_keys[j]
                 compare_image_features = features_dict[compare_image_key]
