@@ -26,8 +26,8 @@ def analyze_trend(data, phase, index):
     else:
         trend = 'down'
     
-    return {'date': data['time'].dt.date.iloc[-1], 
+    return {'index': f'{index}',
+            'date': data['time'].dt.date.iloc[-1], 
             'time': data['time'].dt.time.iloc[-1],
-            'index': f'{index}-{data["time"].dt.date.iloc[-1]}.png', 
             'trend': trend, 
             'phase': phase}

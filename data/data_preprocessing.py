@@ -78,8 +78,42 @@ def numeric_data(numeric_dir, stock_csv, seq_len, window_len, end_date):
                 
 '''
 step 3.candlestick image
-''' 
-def candlestick_image(candel_dir, stock_csv, seq_len, window_len, end_date):
+'''
+def candlestick_image(candel_dir, stock_csv, seq_len, window_len, end_date, start_idx, end_idx):
+    if not os.path.exists(candel_dir):
+        os.makedirs(candel_dir)
+    
+    stock_data = pd.read_csv(stock_csv)
+    stock_data['time'] = pd.to_datetime(stock_data['time'])
+    
+    loop_end = pd.Timestamp(end_date).date()
+    trading_days = list(stock_data.groupby(stock_data['time'].dt.date))
+    image_index = start_idx * ((len(stock_data) - seq_len + window_len) // window_len)
+    
+    for trading_day in tqdm(range(start_idx, end_idx)):
+        date, group = trading_days[trading_day]
+    
+        if date >= loop_end:
+            break
+        
+        candle_data = pd.DataFrame(group).reset_index(drop=True)
+        
+        for start in range(0, len(candle_data) - seq_len + window_len, window_len):
+            try:
+                end = start + seq_len
+                current_data = candle_data.iloc[start:end].reset_index(drop=True)
+                
+                fig = plot_candles(current_data, title=None, trend_line=False, volume_bars=False, color_function=None, technicals=None)
+                current_image_path = os.path.join(candel_dir, f'{image_index}-{date}.png')
+                fig.savefig(current_image_path, dpi=150)
+                plt.close(fig)
+                image_index += 1
+            
+            except Exception as e:
+                print(f"Error processing {date}: {e}")
+                continue
+             
+''' def candlestick_image(candel_dir, stock_csv, seq_len, window_len, end_date):
     if not os.path.exists(candel_dir):
         os.makedirs(candel_dir)
     
@@ -118,11 +152,49 @@ def candlestick_image(candel_dir, stock_csv, seq_len, window_len, end_date):
             
             except Exception as e:
                 print(f"Error processing {date}: {e}")
-                continue            
+                continue '''            
 '''
 step 4.bollinger band area image
 ''' 
-def bollinger_band(bband_dir, stock_csv, seq_len, window_len, end_date):
+def bollinger_band(bband_dir, stock_csv, seq_len, window_len, end_date, start_idx, end_idx):
+    if not os.path.exists(bband_dir):
+        os.makedirs(bband_dir)
+
+    stock_data = pd.read_csv(stock_csv)
+    stock_data['time'] = pd.to_datetime(stock_data['time'])
+    
+    loop_end = pd.Timestamp(end_date).date()
+    trading_days = list(stock_data.groupby(stock_data['time'].dt.date))
+    image_index = start_idx * ((len(stock_data) - seq_len + window_len) // window_len)
+    
+    for trading_day in tqdm(range(start_idx, end_idx)):
+        date, group = trading_days[trading_day]
+    
+        if date >= loop_end:
+            break
+        
+        candle_data = pd.DataFrame(group).reset_index(drop=True)
+        
+        for start in range(0, len(candle_data) - seq_len + window_len, window_len):
+            try:
+                end = start + seq_len
+                current_data = candle_data.iloc[start:end].reset_index(drop=True)
+                
+                plt.figure(facecolor='black')
+                plt.fill_between(current_data.index, current_data['BBAND_LOWER'], current_data['BBAND_UPPER'], color='white')
+                plt.plot(current_data['BBAND_UPPER'], label='Upper Bollinger Band', color='white')
+                plt.plot(current_data['BBAND_MIDDLE'], label='Middle Bollinger Band', color='white')
+                plt.plot(current_data['BBAND_LOWER'], label='Lower Bollinger Band', color='white')
+                plt.axis('off')
+                plt.savefig(os.path.join(bband_dir, f'{image_index}-{date}.png'), dpi=150)
+                plt.close()
+                image_index += 1
+            
+            except Exception as e:
+                print(f"Error processing {date}: {e}")
+                continue
+            
+''' def bollinger_band(bband_dir, stock_csv, seq_len, window_len, end_date):
     if not os.path.exists(bband_dir):
         os.makedirs(bband_dir)
 
@@ -166,7 +238,7 @@ def bollinger_band(bband_dir, stock_csv, seq_len, window_len, end_date):
             
             except Exception as e:
                 print(f"Error processing {date}: {e}")
-                continue
+                continue '''
 
 '''
 step 5.stock movement labeling

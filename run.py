@@ -12,7 +12,7 @@ random.seed(fix_seed)
 np.random.seed(fix_seed)
 
 # CPU 코어 수 설정 (전체 코어 - 1)
-NUM_CORES = max(1, mp.cpu_count() - 1)
+NUM_CORES = max(1, mp.cpu_count() - 3)
 
 ## ==================================================
 parser = argparse.ArgumentParser(description="Stock Similarity")
@@ -47,7 +47,7 @@ parser.add_argument('--bollinger_img_path', type=str, default='img_data/bollinge
 parser.add_argument('--data_path', type=str, default='./data/numeric_data/', help='origin data directory')
 
 
-parser.add_argument('--start_index', type=int, default=30761, help='origin data directory')
+parser.add_argument('--start_index', type=int, default=0, help='origin data directory')
 parser.add_argument('--end_index', type=int, default=None, help='end index for processing (optional, defaults to total length)')
 
 ## ======================================================================================================================================================
@@ -86,10 +86,13 @@ def main():
     args = parser.parse_args()
 
     ## ======================================================================================================================================================
-    # Data preparing
+    ## Data preparing
+    
+    # Step 1: Data Preprocessing
     if args.task_name == "data_preprocessing":
         data_preprocessing(args.output_dir)
 
+    # Step 2: Numeric Data
     elif args.task_name == "numeric_data":   
         numeric_data(
             args.numeric_dir,
@@ -98,26 +101,64 @@ def main():
             args.window_len,
             args.end_date,
         )
+    
+    # Step 3: Candlestick Image
+    elif args.task_name == "candlestick_image":
+        stock_data = pd.read_csv(args.stock_csv)
+        trading_days = list(stock_data.groupby(stock_data['time'].dt.date))
+        total_days = len(trading_days)
         
-    elif args.task_name == "candlestick_image":  
+        if args.start_index >= total_days:
+            raise ValueError(f"start_index {args.start_index} is larger than total days {total_days}")
+        end_index = args.end_index if args.end_index is not None else total_days
+        if end_index > total_days:
+            end_index = total_days
+        
+        chunk_size = (end_index - args.start_index) // NUM_CORES
+        chunk_args = []
+        
+        for i in range(NUM_CORES):
+            start_idx = args.start_index + (i * chunk_size)
+            end_idx = start_idx + chunk_size if i < NUM_CORES - 1 else end_index
+            chunk_args.append((args.candel_dir, args.stock_csv, args.seq_len, args.window_len, args.end_date, start_idx, end_idx))
+        
         with mp.Pool(processes=NUM_CORES) as pool:
-            chunk_args = [(args.candel_dir, args.stock_csv, args.seq_len, 
-                          args.window_len, args.end_date) for _ in range(NUM_CORES)]
             pool.map(process_candlestick_image, chunk_args)
+    
+    # Step 4: Bollinger Band Image
+    elif args.task_name == "bollinger_band":
+        stock_data = pd.read_csv(args.stock_csv)
+        trading_days = list(stock_data.groupby(stock_data['time'].dt.date))
+        total_days = len(trading_days)
         
-    elif args.task_name == "bollinger_band":  
+        if args.start_index >= total_days:
+            raise ValueError(f"start_index {args.start_index} is larger than total days {total_days}")
+        end_index = args.end_index if args.end_index is not None else total_days
+        if end_index > total_days:
+            end_index = total_days
+        
+        chunk_size = (end_index - args.start_index) // NUM_CORES
+        chunk_args = []
+        
+        for i in range(NUM_CORES):
+            start_idx = args.start_index + (i * chunk_size)
+            end_idx = start_idx + chunk_size if i < NUM_CORES - 1 else end_index
+            chunk_args.append((args.bband_dir, args.stock_csv, args.seq_len, args.window_len, args.end_date, start_idx, end_idx))
+        
         with mp.Pool(processes=NUM_CORES) as pool:
-            chunk_args = [(args.bband_dir, args.stock_csv, args.seq_len, 
-                          args.window_len, args.end_date) for _ in range(NUM_CORES)]
             pool.map(process_bollinger_band, chunk_args)
-
-    elif args.task_name == "label_data":   
-        with mp.Pool(processes=NUM_CORES) as pool:
-            chunk_args = [(args.output_dir, args.stock_csv, args.seq_len, 
-                          args.window_len, args.future_points, args.end_date) 
-                          for _ in range(NUM_CORES)]
-            pool.map(process_label_data, chunk_args)
-        
+                        
+    # Step 5: Label Data
+    elif args.task_name == "label_data":
+        label_data(
+            args.output_dir,
+            args.stock_csv,
+            args.seq_len,
+            args.window_len,
+            args.future_points,
+            args.end_date,
+        )
+                
     ## ======================================================================================================================================================    
     # Feature extraction 
     elif args.task_name == "image_FE":  
