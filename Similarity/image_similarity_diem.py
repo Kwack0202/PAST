@@ -1,7 +1,6 @@
 from common_imports import *
 
 def calculate_diem(vec1, vec2, v_min, v_max, expected_dist, variance):
-    """DIEM 유사도 계산 함수"""
     vec1 = np.ravel(vec1)
     vec2 = np.ravel(vec2)
     euclidean_dist = np.sqrt(np.sum((vec1 - vec2) ** 2))
@@ -9,7 +8,6 @@ def calculate_diem(vec1, vec2, v_min, v_max, expected_dist, variance):
     return diem
 
 def image_similarity_diem(save_root, features_dict, sorted_keys, start_idx, end_idx):
-    """DIEM 유사도 계산 함수 (멀티프로세싱용, 샘플링 크게 증가)"""
     os.makedirs(save_root, exist_ok=True)
     
     # 초기 최대/최소값 계산

@@ -1,25 +1,20 @@
 from common_imports import *
 
 def process_trading_signals(pred_file_path, stock_data_path='./data/origin_data/stock_data.csv', opposite_count=2):
-    # 예측 CSV 파일 읽기 (5분 간격)
     pred_csv = pd.read_csv(pred_file_path)
     pred_csv['time'] = pd.to_datetime(pred_csv['time'])
 
-    # 5_current.csv 파일 읽기
     current_csv = pd.read_csv('./data/label/5_current.csv')
     current_csv = current_csv[['index', 'trend']]
     current_csv = current_csv.rename(columns={'trend': 'current_trend'})
 
-    # pred_csv에 current_trend 병합
     pred_csv = pd.merge(pred_csv, current_csv, on='index', how='left')
 
-    # 원본 1분봉 데이터 읽기
     stock_data = pd.read_csv(stock_data_path)
     stock_data['time'] = pd.to_datetime(stock_data['time'])
     stock_data = stock_data[stock_data['time'] >= '2024-01-01'].reset_index(drop=True)
     stock_data = stock_data[['time', 'open', 'high', 'low', 'close', 'volume']]
 
-    # 5분 간격 데이터로 position 생성
     trading_days = list(pred_csv.groupby(pred_csv['time'].dt.date))
     signal_results = []
 
@@ -78,10 +73,8 @@ def process_trading_signals(pred_file_path, stock_data_path='./data/origin_data/
         trading_df.loc[len(trading_df) - 1, 'position'] = 'margin transaction'
         signal_results.append(trading_df)
 
-    # 5분 간격 데이터프레임 병합
     pred_with_position = pd.concat(signal_results, ignore_index=True)
 
-    # 1분봉 데이터와 병합 (보간 없이)
     merged_df = pd.merge(stock_data, pred_with_position[['time', 'index', 'current_trend', 'real_trend', 'pred_trend', 'position']], 
                          on='time', how='left')
     
@@ -89,23 +82,22 @@ def process_trading_signals(pred_file_path, stock_data_path='./data/origin_data/
     found_entry = False
 
     for i in range(len(position_col)):
-        if pd.isna(position_col[i]):  # NaN 값 처리
+        if pd.isna(position_col[i]): 
             if not found_entry:
                 position_col[i] = 'No action'
             else:
                 position_col[i] = 'holding'
         elif position_col[i] in ['short', 'long']:
             found_entry = True
-            # 그대로 유지
+            
         elif position_col[i] == 'margin transaction':
             found_entry = False
-            # 그대로 유지
+            
         elif position_col[i] == 'No action' and found_entry:
             position_col[i] = 'holding'
 
     merged_df['position'] = position_col
 
-    # 결과 저장
     output_dir = './Backtesting/trading/'
     os.makedirs(output_dir, exist_ok=True)
     output_file = os.path.join(output_dir, os.path.basename(pred_file_path))

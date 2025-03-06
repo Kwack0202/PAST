@@ -112,47 +112,7 @@ def candlestick_image(candel_dir, stock_csv, seq_len, window_len, end_date, star
             except Exception as e:
                 print(f"Error processing {date}: {e}")
                 continue
-             
-''' def candlestick_image(candel_dir, stock_csv, seq_len, window_len, end_date):
-    if not os.path.exists(candel_dir):
-        os.makedirs(candel_dir)
-    
-    stock_data = pd.read_csv(stock_csv)
-    stock_data['time'] = pd.to_datetime(stock_data['time'])
-    
-    loop_end = pd.Timestamp(end_date).date()
-    
-    trading_days = list(stock_data.groupby(stock_data['time'].dt.date))
-    
-    image_index = 0
-    start_day = 0
-    end_day = len(trading_days)
-    
-    for trading_day in tqdm(range(start_day, end_day)):
-        date, group = trading_days[trading_day]
-    
-        if date >= loop_end:
-            break
-        
-        candle_data = pd.DataFrame(group).reset_index(drop=True)
-        
-        for start in range(0, len(candle_data) - seq_len + window_len, window_len):
-            try:
-                end = start + seq_len
-                current_data = candle_data.iloc[start:end]
-                current_data = current_data.reset_index(drop=True)
-                
-                # 현재 캔들스틱 차트의 이미지 생성
-                fig = plot_candles(current_data, title=None, trend_line=False, volume_bars=False, color_function=None, technicals=None)
-                current_image_path = os.path.join(candel_dir, f'{image_index}-{date}.png')
-                fig.savefig(current_image_path, dpi=150)
-                plt.close(fig)
-                    
-                image_index += 1
-            
-            except Exception as e:
-                print(f"Error processing {date}: {e}")
-                continue '''            
+
 '''
 step 4.bollinger band area image
 ''' 
@@ -193,52 +153,6 @@ def bollinger_band(bband_dir, stock_csv, seq_len, window_len, end_date, start_id
             except Exception as e:
                 print(f"Error processing {date}: {e}")
                 continue
-            
-''' def bollinger_band(bband_dir, stock_csv, seq_len, window_len, end_date):
-    if not os.path.exists(bband_dir):
-        os.makedirs(bband_dir)
-
-    stock_data = pd.read_csv(stock_csv)
-    stock_data['time'] = pd.to_datetime(stock_data['time'])
-    
-    loop_end = pd.Timestamp(end_date).date()
-    
-    trading_days = list(stock_data.groupby(stock_data['time'].dt.date))
-    
-    image_index = 0
-    
-    for trading_day in tqdm(range(len(trading_days))):
-        date, group = trading_days[trading_day]
-    
-        if date >= loop_end:
-            break
-        
-        candle_data = pd.DataFrame(group).reset_index(drop=True)
-        
-        for start in range(0, len(candle_data) - seq_len + window_len, window_len):
-            try:
-                end = start + seq_len
-                current_data = candle_data.iloc[start:end].reset_index(drop=True)
-                
-                # 현재 데이터에 대한 볼린저 밴드 차트 생성
-                plt.figure(facecolor='black')  # 배경색 검은색으로 설정
-                plt.fill_between(current_data.index, current_data['BBAND_LOWER'], current_data['BBAND_UPPER'], color='white')
-                
-                plt.plot(current_data['BBAND_UPPER'], label='Upper Bollinger Band', color='white')
-                plt.plot(current_data['BBAND_MIDDLE'], label='Middle Bollinger Band', color='white')
-                plt.plot(current_data['BBAND_LOWER'], label='Lower Bollinger Band', color='white')
-                
-                # 축과 레이블 숨기기
-                plt.axis('off')
-                
-                plt.savefig(os.path.join(bband_dir, f'{image_index}-{date}'), dpi=150)
-                plt.close()
-                
-                image_index += 1
-            
-            except Exception as e:
-                print(f"Error processing {date}: {e}")
-                continue '''
 
 '''
 step 5.stock movement labeling

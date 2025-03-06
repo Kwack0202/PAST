@@ -70,6 +70,7 @@ parser.add_argument('--top_n_list', type=int, nargs='+', default=[1, 5, 10], hel
 parser.add_argument('--pred_dir', type=str, default='./Backtesting/pred/', help='prediction CSV directory')
 parser.add_argument('--opposite_count', type=int, default=2, help='number of opposite signals before margin transaction')
 
+parser.add_argument('--similarity_types', type=str, nargs='+', default=['cosine', 'cosine_IOU_avg'], help='list of similarity types to filter pred files')
 parser.add_argument('--stock_data_path', type=str, default='./data/origin_data/stock_data.csv', help='1-minute stock data directory')
 parser.add_argument('--trading_dir', type=str, default='./Backtesting/trading/', help='trading CSV directory')
 
@@ -343,8 +344,8 @@ def main():
         with mp.Pool(processes=NUM_CORES) as pool:
             pool.map(process_merge_csv, chunk_args)
     
-    # predict           
-    elif args.task_name == "predict_trend":
+    # prediction    
+    elif args.task_name == "prediction":
         files = [f for f in os.listdir(args.merged_path) if f.endswith('.csv')]
         sorted_files = sorted(files, key=lambda x: int(x.split('-')[0]))
         sample_file = pd.read_csv(os.path.join(args.merged_path, sorted_files[0]))
@@ -363,7 +364,11 @@ def main():
     # trading
     elif args.task_name == "trading":
         pred_files = [f for f in os.listdir(args.pred_dir) if f.endswith('.csv')]
-        sorted_files = sorted(pred_files)
+        filtered_pred_files = [file for file in pred_files if file.split('future_')[-1].replace('.csv', '') in args.similarity_types]
+                
+        if not filtered_pred_files:
+            raise ValueError(f"No files found in {args.pred_dir} matching similarity types: {args.similarity_types}")
+        sorted_files = sorted(filtered_pred_files)
         total_files = len(sorted_files)
         if args.start_index >= total_files:
             raise ValueError(f"start_index {args.start_index} is larger than total files {total_files}")

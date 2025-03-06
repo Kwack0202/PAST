@@ -105,12 +105,11 @@ def process_trading_data(pred_file, output_dir='./Backtesting/simulation/'):
         merged_df['portfolio_performance'] = merged_df['Cumulative_Profit'] + initial_investment
         merged_df['Portfolio_Performance_Return'] = ((merged_df['portfolio_performance'] - initial_investment) / initial_investment) * 100
 
-        # Drawdown 계산
+        # Drawdown
         max_pp = 0
         max_pp_rate = 0
         
         for index, row in merged_df.iterrows():
-            # 기존 Drawdown 계산
             if row['Cumulative_Profit'] > max_pp:
                 max_pp = row['Cumulative_Profit']
             merged_df.at[index, 'Drawdown'] = -(max_pp - row['Cumulative_Profit']) if row['Cumulative_Profit'] != 0 else 0
@@ -193,7 +192,6 @@ def summarize_results(trading_files, input_dir='./Backtesting/simulation/', outp
                                margin_transactions_df[(margin_transactions_df["position"].shift(1) == "short") & (margin_transactions_df["Margin_Profit"] < 0)]['Margin_Profit'].sum() 
                                if margin_transactions_df[(margin_transactions_df["position"].shift(1) == "short") & (margin_transactions_df["Margin_Profit"] < 0)]['Margin_Profit'].sum() != 0 else 0)
         
-        # 평가 지표 (기존 코드 유지)
         final_cumulative_profit = backtesting_df['Cumulative_Profit'].iloc[-1]
         final_cumulative_return = backtesting_df['Cumulative_Return'].iloc[-1]
         max_realized_profit = backtesting_df['Margin_Profit'].max()
@@ -221,7 +219,6 @@ def summarize_results(trading_files, input_dir='./Backtesting/simulation/', outp
             MDD, MDD_rate
         ])
 
-    # Summary DataFrame 생성 및 저장
     summary_df = pd.DataFrame(summary_data, columns=[
         "data_frame_name", "trading_trial",
         "total_trades", "long_entries", "short_entries",

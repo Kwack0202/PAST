@@ -25,8 +25,9 @@ def calculate_similarity(metric, vec1, vec2):
 
 def image_similarity(save_root, features_dict, sorted_keys, start_idx, end_idx):
     os.makedirs(save_root, exist_ok=True)
-    similarity_metrics = ['cosine', 'euclidean', 'manhattan', 'chebyshev', 
-                          'minkowski', 'canberra', 'braycurtis', 'wasserstein']
+    similarity_metrics = ['cosine', 'euclidean', 'wasserstein',  
+                          # 'manhattan', 'chebyshev', 'minkowski', 'canberra', 'braycurtis'
+                          ]
     
     for i in tqdm(range(start_idx, end_idx), desc=f'Calculating image similarity (from {start_idx} to {end_idx})'):
         try:
