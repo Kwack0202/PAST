@@ -4,10 +4,12 @@ __pycache__/
 *$py.class
 
 data/*
+Backtesting/*
 results/
-!data/data_preprocessing.py
-
 *.whl
+
+!data/data_preprocessing.py
+!Backtesting/*.py
 
 # C extensions
 *.so
