@@ -12,6 +12,7 @@
 - **CPU** AMD Ryzen 9 5950X 16-Core Processor
 - **GPU** NVIDIA GeForce RTX 4080
 - **Memory RAM** 128GB
+
 **The computational efficiency of PAST is proportional to the CPU's power(Logical processor)**
 
 ## Usage
@@ -24,10 +25,10 @@
 ### run.py
 - To run the PAST system, the parser arguments must be passed using the `run.py` and `sh files`
 - The `sh file` is divided into subfolders and multiple steps within the ./scripts/ folder.
+
 #### The folder structure is as follows:
 ```
 ./scripts/
-│
 ├── data/
 │     ├──01_data_preprocessing.sh
 │     ├──02_numeric.sh
@@ -59,10 +60,9 @@ python run.py \
     --window_len 5 \
     --end_date 2025-01-01 \
     --start_index 0 \
-
 ```
 
-### Backtesting (Cumulative_profit)
+## Backtesting (Cumulative_profit)
 <div align="center">
     <img src="./assets/final_output.gif" />
     <br>
