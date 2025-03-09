@@ -53,8 +53,9 @@ def process_trading_signals(pred_file_path, stock_data_path='./data/origin_data/
                         trading_df.loc[i, 'position'] = 'No action'
                         initial_position_set = False
                 else:
-                    # 현재 포지션 유지 중
-                    if (current_position == 'long' and pred_trend == 'down') or (current_position == 'short' and pred_trend == 'up'):
+                    # 현재 포지션 유지 중      
+                    # if (current_position == 'long' and pred_trend == 'down') or (current_position == 'short' and pred_trend == 'up'):
+                    if (current_position == 'long' and current_trend != 'up' and pred_trend != 'up') or (current_position == 'short' and current_trend != 'down' and pred_trend != 'down'):
                         # 반대 방향 예측 시 카운터 증가
                         counter += 1
                         if counter >= opposite_count:
@@ -66,7 +67,7 @@ def process_trading_signals(pred_file_path, stock_data_path='./data/origin_data/
                     else:
                         # 동일 방향 또는 sideway 시 유지
                         trading_df.loc[i, 'position'] = 'holding'
-                        # counter = 0  # 동일 방향 시 카운터 초기화
+                        counter = 0  # 동일 방향 시 카운터 초기화
 
         # 날짜 마지막 행은 무조건 청산
         trading_df.loc[len(trading_df) - 1, 'position'] = 'margin transaction'

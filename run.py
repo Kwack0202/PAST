@@ -23,7 +23,7 @@ random.seed(fix_seed)
 np.random.seed(fix_seed)
 
 # CPU 코어 수 설정 (전체 코어 - 1)
-NUM_CORES = max(1, mp.cpu_count() - 3)
+NUM_CORES = max(1, mp.cpu_count() - 2)
 
 ## ==================================================
 parser = argparse.ArgumentParser(description="Stock Similarity")
@@ -424,6 +424,8 @@ def main():
         summarize_results(trading_files[args.start_index:end_index])
         print("All backtesting steps completed successfully.")
     
+    ## ======================================================================================================================================================
+    ## Ploting
     # visualization - Long/Short Signals 시각화  
     elif args.task_name == "plot_signals":
         files = [f.replace('_results.csv', '') for f in os.listdir(args.simulation_dir) if f.endswith('_results.csv')]

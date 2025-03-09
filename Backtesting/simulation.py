@@ -99,13 +99,12 @@ def process_trading_data(pred_file, output_dir='./Backtesting/simulation/'):
             
         merged_df['Cumulative_Return'] = (merged_df['Cumulative_Profit'] / initial_investment) * 100
         merged_df['Unrealized_Return'] = (merged_df['Unrealized_Profit'] / initial_investment) * 100
-    
         merged_df['Daily_Cumulative_Return'] = (merged_df['Daily_Cumulative_Profit'] / initial_investment) * 100
         merged_df['Account_Performance_Return'] = (merged_df['Account_performance'] / initial_investment) * 100
         merged_df['portfolio_performance'] = merged_df['Cumulative_Profit'] + initial_investment
         merged_df['Portfolio_Performance_Return'] = ((merged_df['portfolio_performance'] - initial_investment) / initial_investment) * 100
 
-        # Drawdown
+        # Drawdown 계산
         max_pp = 0
         max_pp_rate = 0
         
@@ -118,7 +117,6 @@ def process_trading_data(pred_file, output_dir='./Backtesting/simulation/'):
                 max_pp_rate = row['Cumulative_Return']
             merged_df.at[index, 'Drawdown_rate'] = -(max_pp_rate - row['Cumulative_Return']) if row['Cumulative_Return'] != 0 else 0
 
-            
         signal_results.append(merged_df)
     
     final_trading_df = pd.concat(signal_results, ignore_index=True)
@@ -134,6 +132,8 @@ def process_trading_data(pred_file, output_dir='./Backtesting/simulation/'):
     ]
     
     final_trading_df = final_trading_df[column_names]
+    # 숫자형 변수들을 소숫점 3자리로 반올림
+    final_trading_df = final_trading_df.round(3)
     
     os.makedirs(output_dir, exist_ok=True)
     final_trading_df.to_csv(f"{output_dir}/{pred_file}_results.csv", encoding='utf-8-sig', index=False)
@@ -205,7 +205,6 @@ def summarize_results(trading_files, input_dir='./Backtesting/simulation/', outp
         MDD = backtesting_df['Drawdown'].min()
         MDD_rate = backtesting_df['Drawdown_rate'].min()
 
-
         summary_data.append([
             pred_file, trading_trial, total_trades, long_entries, short_entries,
             total_win_rate, long_win_rate, short_win_rate,
@@ -232,7 +231,9 @@ def summarize_results(trading_files, input_dir='./Backtesting/simulation/', outp
         "max_portfolio_performance", "max_portfolio_return",
         "MaxDrawdown", "MaxDrawdown_rate"
     ])
-
+    
+    summary_df = summary_df.round(3)
+    
     os.makedirs(output_dir, exist_ok=True)
     summary_df.to_csv(f"{output_dir}/results_summary.csv", encoding='utf-8-sig', index=False)
     print("Summary completed and saved.")
