@@ -3,7 +3,6 @@
 <div align="center">
     <img src="./assets/final_output.gif" />
 </div>
-
 ## Concept of PAST
 ![Framework](./assets/concept_fig.png)
 - **Current Chart** (C, 🔴): Historical charts similar to the current window
@@ -67,5 +66,10 @@ python run.py \
 
 ## Backtesting (Cumulative_profit)
 <div align="center">
-    <img src="./assets/cum_result_sample.gif" />
+    <table>
+        <tr>
+            <td><img src="./assets/final_output.gif" /></td>
+            <td><img src="./assets/cum_result_sample.gif" /></td>
+        </tr>
+    </table>
 </div>
