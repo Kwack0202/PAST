@@ -66,5 +66,5 @@ python run.py \
 <div align="center">
     <img src="./assets/final_output.gif" />
     <br>
-    <img src="./assets/top_10_window_5_output.gif" />
+    <img src="./assets/cum_result_sample.gif" />
 </div>
