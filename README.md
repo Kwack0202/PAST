@@ -8,14 +8,14 @@
 
 **PAST is a “model-learning-independent system” that does not use the concept of model learning**
 
-## System setting
+## 🛠System setting
 - **CPU** AMD Ryzen 9 5950X 16-Core Processor
 - **GPU** NVIDIA GeForce RTX 4080
 - **Memory RAM** 128GB
 
 **The computational efficiency of PAST is proportional to the CPU's power(Logical processor)**
 
-## Usage
+## 📑Usage
 ### Requirments
 - **python version** 3.8 
 - **TA Library** TA_Lib-0.4.24-cp38-cp38-win_amd64.whl
@@ -64,10 +64,7 @@ python run.py \
 
 ## Backtesting (Cumulative_profit)
 <div align="center">
-    <span style="display: inline-block; margin-right: 20px;">
-        <img src="./assets/final_output.gif" />
-    </span>
-    <span style="display: inline-block;">
-        <img src="./assets/cum_result_sample.gif" />
-    </span>
+    <img src="./assets/final_output.gif" />
+    <br>
+    <img src="./assets/cum_result_sample.gif" />
 </div>
