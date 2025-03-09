@@ -1,5 +1,8 @@
 # PAST
 **PAST : Price Analysis using Similarity Tracking**
+<div align="center">
+    <img src="./assets/final_output.gif" />
+</div>
 
 ## Concept of PAST
 ![Framework](./assets/concept_fig.png)
@@ -64,7 +67,5 @@ python run.py \
 
 ## Backtesting (Cumulative_profit)
 <div align="center">
-    <img src="./assets/final_output.gif" />
-    <br>
     <img src="./assets/cum_result_sample.gif" />
 </div>
