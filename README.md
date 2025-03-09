@@ -64,10 +64,10 @@ python run.py \
 
 ## Backtesting (Cumulative_profit)
 <div align="center">
-    <table>
-        <tr>
-            <td><img src="./assets/final_output.gif" /></td>
-            <td><img src="./assets/cum_result_sample.gif" /></td>
-        </tr>
-    </table>
+    <span style="display: inline-block; margin-right: 20px;">
+        <img src="./assets/final_output.gif" />
+    </span>
+    <span style="display: inline-block;">
+        <img src="./assets/cum_result_sample.gif" />
+    </span>
 </div>
