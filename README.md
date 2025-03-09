@@ -1,8 +1,6 @@
 # PAST
 **PAST : Price Analysis using Similarity Tracking**
-<div align="center">
-    <img src="./assets/final_output.gif" />
-</div>
+
 ## Concept of PAST
 ![Framework](./assets/concept_fig.png)
 - **Current Chart** (C, 🔴): Historical charts similar to the current window
