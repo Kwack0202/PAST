@@ -10,9 +10,10 @@ PAST : Price Analysis using Similarity Tracking
 
 ### GIF Demo: Comparing Two Windows
 
-Here are two different examples of the similarity tracking using price analysis. The GIFs below are shown side by side and loop continuously.
+Here are two different examples of the similarity tracking using price analysis. The GIFs below are shown one above the other and loop continuously (if the GIF itself has looping enabled).
 
 <div align="center">
-    <img src="./assets/final_output.gif" width="45%" loop="true" />
-    <img src="./assets/top_10_window_5_output.gif" width="45%" loop="true" />
+    <img src="./assets/final_output.gif" />
+    <br>
+    <img src="./assets/top_10_window_5_output.gif" />
 </div>
