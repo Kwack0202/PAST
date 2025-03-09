@@ -8,21 +8,21 @@
 
 **PAST is a “model-learning-independent system” that does not use the concept of model learning**
 
-## 🛠System setting
+## 0️⃣ System setting
 - **CPU** AMD Ryzen 9 5950X 16-Core Processor
 - **GPU** NVIDIA GeForce RTX 4080
 - **Memory RAM** 128GB
 
 **The computational efficiency of PAST is proportional to the CPU's power(Logical processor)**
 
-## 📑Usage
-### Requirments
+## 1️⃣ Usage
+### 🛠 Requirments
 - **python version** 3.8 
 - **TA Library** TA_Lib-0.4.24-cp38-cp38-win_amd64.whl
 - **other package** Packages in common_imports.py
 - **Futures Data** 1-minute high-frequency trading data (stock indices, individual stocks, etc.)
 
-### run.py
+### 📑 run.py
 - To run the PAST system, the parser arguments must be passed using the `run.py` and `sh files`
 - The `sh file` is divided into subfolders and multiple steps within the ./scripts/ folder.
 
