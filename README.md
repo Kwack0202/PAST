@@ -6,12 +6,56 @@ PAST : Price Analysis using Similarity Tracking
 - **Current Chart** (C, 🔴): Historical charts similar to the current window
 - **Future Chart** (F, 🟢): Future price movements of the chart (C) browsed based on similarities
 
-## Demo
+PAST is a “model-learning-independent system” that does not use the concept of model learning
 
-### GIF Demo: Comparing Two Windows
+## System setting
+- **CPU** AMD Ryzen 9 5950X 16-Core Processor
 
-Here are two different examples of the similarity tracking using price analysis. The GIFs below are shown one above the other and loop continuously (if the GIF itself has looping enabled).
+- **GPU** NVIDIA GeForce RTX 4080
 
+- **Memory RAM** 128GB
+
+The computational efficiency of PAST is proportional to the CPU's power(Logical processor)
+
+## Usage
+#### Requirments
+- **python version** 3.8 
+
+- **TA Library** TA_Lib-0.4.24-cp38-cp38-win_amd64.whl
+
+- **other package** Packages in common_imports.py
+
+- **Futures Data** 1-minute high-frequency trading data (stock indices, individual stocks, etc.)
+
+#### run.py
+- To run the PAST system, the parser arguments must be passed using the `run.py` and `sh files`
+- The `sh file` is divided into subfolders and multiple steps within the ./scripts/ folder.
+##### The folder structure is as follows:
+```
+./scripts/
+│
+├── data/
+│     ├──01_data_preprocessing.sh
+│     ├──02_numeric.sh
+│     │         :
+│     └──05_label_data.sh
+│
+├── Similarity/
+│     ├──01_image_FE.sh
+│     ├──02_image_similarity.sh
+│     │         :
+│
+└── Backtesting/
+      ├──01_results_merge.sh
+      ├──02_prediction.sh
+      │         :
+```
+##### Example command (git bash)
+```
+sh ./scripts/data/03_candlestick_image.sh
+```
+
+#### Backtesting (Cumulative_profit)
 <div align="center">
     <img src="./assets/final_output.gif" />
     <br>
