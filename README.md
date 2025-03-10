@@ -6,7 +6,7 @@
 - **Current Chart** (**C**, 🔴): Historical charts similar to the current window
 - **Future Chart** (**F**, 🟢): Future price movements of the chart (C) browsed based on similarities
 
-**PAST is a `model-learning-independent system` that does not use the concept of model learning**
+**PAST is a model-learning-independent system that does not use the concept of model learning**
 
 PAST uses images of `candlestick charts` and `Bollinger band areas` to make predictions and trades based on the similarity between the current window and the past window
 
