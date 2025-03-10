@@ -3,8 +3,8 @@
 
 ## Concept of PAST
 ![Framework](./assets/concept_fig.png)
-- **Current Chart** (C, 🔴): Historical charts similar to the current window
-- **Future Chart** (F, 🟢): Future price movements of the chart (C) browsed based on similarities
+- **Current Chart** (**C**, 🔴): Historical charts similar to the current window
+- **Future Chart** (**F**, 🟢): Future price movements of the chart (C) browsed based on similarities
 
 **PAST is a “model-learning-independent system” that does not use the concept of model learning**
 
@@ -63,8 +63,14 @@ python run.py \
 ```
 
 ## 📊 Backtesting
+- **Window size** (default, 🔴) : 60
+- **Window Sliding** (default) : 5
+- **Labeling window size** (🟢) : 5, 10, 15, 30, 60 -> 💡best! 15, 30
+- **Select Top N instances** : 1, 3, 5, 10, 20, 30, 50, 100, 200 ... -> 💡best! 1, 3, 30
 
-| **Starategy**  |       **Category**      | **trading_trial** | **total_trades** | **long_entries** | **short_entries** | **total_win_rate** | **long_win_rate** | **short_win_rate** | **total_payoff_ratio** | **total_profit_factor** | **long_payoff_ratio** | **long_profit_factor** | **short_payoff_ratio** | **short_profit_factor** | **final_cumulative_profit** | **final_cumulative_return** | **max_realized_profit** | **max_realized_return** | **final_portfolio_return** | **max_portfolio_return** | **MaxDrawdown** | **MaxDrawdown_rate** |
+
+
+| **Starategy**  |       **Category**      | **trading_trial** | **total_trades** | **long_entries** | **short_entries** | **total_win_rate(%)** | **long_win_rate(%)** | **short_win_rate(%)** | **total_payoff_ratio** | **total_profit_factor** | **long_payoff_ratio** | **long_profit_factor** | **short_payoff_ratio** | **short_profit_factor** | **final_cumulative_profit** | **final_cumulative_return(%)** | **max_realized_profit** | **max_realized_return(%)** | **final_portfolio_return(%)** | **max_portfolio_return(%)** | **MaxDrawdown** | **MaxDrawdown_rate(%)** |
 |----------------|-------------------------|-------------------|------------------|------------------|-------------------|--------------------|-------------------|--------------------|-----------------------|------------------------|---------------------|-----------------------|---------------------|-----------------------|--------------------------|---------------------------|------------------------|---------------------|----------------------------|--------------------------|-----------------|--------------------|
 | **similarity** | **IOU**                 | **3.084**         | **733.889**      | **357.2**        | **376.689**       | **44.369**         | **43.457**         | **45.235**         | **1.273**             | **1.06**               | **1.218**           | **0.948**             | **1.326**             | **1.177**             | **17.037**               | **5.281**                 | **5.824**              | **1.704**           | **339.578**               | **5.281**                | **9.332**         | **-4.256**         |
 |                | DIEM                    | 2.982             | 709.711          | 342.289          | 367.422           | 43.858             | 42.857            | 44.78              | 1.232                 | 1.007                  | 1.186               | 0.913                 | 1.276               | 1.102                 | 1.306                    | 0.404                     | 6.087                  | 1.757               | 323.83                    | 0.404                    | 6.345           | -5.815           |
