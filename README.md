@@ -7,6 +7,7 @@
 - **Future Chart** (**F**, 🟢): Future price movements of the chart (C) browsed based on similarities
 
 **PAST is a “model-learning-independent system” that does not use the concept of model learning**
+PAST uses images of “candlestick charts” and “Bollinger band areas” to make predictions and trades based on the similarity between the current window and the past window
 
 ## 🛠 System
 - **CPU** `AMD Ryzen 9 5950X 16-Core Processor`
@@ -66,17 +67,25 @@ python run.py \
 ## 📊 Backtesting
 #### KOSPI200 futures data
 ![Data distribution](./assets/KOSPI200_Futures_distribution.png) 
+
 - **Experimental period** 2022.02.10-2024.12.31
 - **Test(Trading)** 2024.01.01-2024.12.31
 - Each point in the Test(Trading) period time series has access to all of the previous time series
-
+- As of July 31, 2023, the opening hours of the derivatives market on the Korea Exchange have been accelerated due to changes in the derivatives market system `9 AM -> 8:45 AM`
+- Some days the market closes early at `3:20`
+- First trading day of the new year will have a 1-hour delayed opening time `2023Y: 9 AM -> 10 AM` `2024Y: 8:45 AM -> 9:45 AM`
 
 #### Experimental setup
 - **Window size** (default, 🔴) : 60
 - **Window sliding** (default) : 5
 - **Labeling window size** (🟢) : 5, 10, 15, 30, 60 -> **best💡** 15, 30
 - **Select Top N instances** : 1, 3, 5, 10, 20, 30, 50, 100, 200 ... -> **best💡** 1, 3, 30
+- **Similarity types**
 
+
+
+
+#### Summary of trading performance by similarity type
 
 | **Category**   | **strategy**          | **total_payoff_ratio** | **total_profit_factor** | **long_payoff_ratio** | **long_profit_factor** | **short_payoff_ratio** | **short_profit_factor** | **final_cumulative_profit** | **final_cumulative_return** | **max_realized_profit** | **max_realized_return** | **final_portfolio_return** | **max_portfolio_return** | **MaxDrawdown** | **MaxDrawdown_rate** |
 |----------------|-------------------------|-----------------------|------------------------|-----------------------|-----------------------|------------------------|------------------------|--------------------------|---------------------------|------------------------|---------------------|----------------------------|--------------------------|-----------------|--------------------|
@@ -92,8 +101,10 @@ python run.py \
 | **Benchmark**  | dtw_similarity          | 0.864                 | 0.845                  | 0.859                 | 0.82                  | 0.568                 | 0.684                 | -29.532                  | -9.165                    | 5.217                  | 1.584               | 292.67                    | -9.165                   | 0               | -11.151          |
 |                | long                    | 0.9                   | 0.76                   | 0.9                   | 0.76                  | 0                     | 0                     | -77.4                    | -24.241                 | 11.1                 | 3.284               | 241.9                     | -24.241                | 0               | -26.675          |
 
+![trading results](./assets/trading_results_plt.png)
 
 
+#### Cumulative profit visualization (top: all results, bottom: BEST)
 <div align="center">
     <img src="./assets/final_output.gif" />
     <br>
