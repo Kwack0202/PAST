@@ -71,6 +71,7 @@ python run.py \
 
 - **Experimental period** 2022.02.10-2024.12.31
 - **Test(Trading)** 2024.01.01-2024.12.31
+
 Each point in the `Test(Trading)` period time series has access to all of the previous time series
 
 - **Specifics in data**
@@ -79,13 +80,18 @@ Each point in the `Test(Trading)` period time series has access to all of the pr
 > - First trading day of the new year will have a 1-hour delayed opening time `2023Y: 9 AM -> 10 AM` `2024Y: 8:45 AM -> 9:45 AM`
 
 #### Experimental setup
-- **Window size** (default, 🔴) : 60
-- **Window sliding** (default) : 5
-- **Labeling window size** (🟢) : 5, 10, 15, 30, 60 -> **best💡** 15, 30
-- **Select Top N instances** : 1, 3, 5, 10, 20, 30, 50, 100, 200 ... -> **best💡** 1, 3, 30
+- **Window size** (default, 🔴)
+    - 60
+- **Window sliding** (default)
+    - 5
+- **Labeling window size** (🟢) 
+    - 5, 10, 15, 30, 60 -> **best💡** 15, 30
+- **Select Top N instances**
+    - 1, 3, 5, 10, 20, 30, 50, 100, 200 ... -> **best💡** 1, 3, 30
 - **Similarity types**
-
-
+    - Candlestick image feature similarity - DIEM, Cosine, Euclidean, Wasserstein
+    - Bollinger band area IOU score - IOU
+    - Numeric feaure - Dtw
 
 
 #### Summary of trading performance by similarity type
