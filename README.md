@@ -74,9 +74,9 @@ python run.py \
 - Each point in the `Test(Trading)` period time series has access to all of the previous time series
 
 - **Specifics in data**
-> As of July 31, 2023, the opening hours of the derivatives market on the Korea Exchange have been accelerated due to changes in the derivatives market system `9 AM -> 8:45 AM`
-> Some days the market closes early at `3:20`
-> First trading day of the new year will have a 1-hour delayed opening time `2023Y: 9 AM -> 10 AM` `2024Y: 8:45 AM -> 9:45 AM`
+> - As of July 31, 2023, the opening hours of the derivatives market on the Korea Exchange have been accelerated due to changes in the derivatives market system `9 AM -> 8:45 AM`
+> - Some days the market closes early at `3:20`
+> - First trading day of the new year will have a 1-hour delayed opening time `2023Y: 9 AM -> 10 AM` `2024Y: 8:45 AM -> 9:45 AM`
 
 #### Experimental setup
 - **Window size** (default, 🔴) : 60
