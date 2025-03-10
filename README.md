@@ -139,3 +139,10 @@ Each point in the `Test(Trading)` period time series has access to all of the pr
 ![DD Cosine](./assets/cosine_vs_cosine_IOU_avg_output.gif)
 ![DD Euclidean](./assets/euclidean_vs_euclidean_IOU_avg_output.gif)
 ![DD Wasserstein](./assets//wasserstein_vs_wasserstein_IOU_avg_output.gif)
+
+
+![Trading signals](./assets/position_signal.gif) ![Margin](./assets/margin_return.gif)
+
+![DD DIEM](./assets//DIEM_vs_DIEM_IOU_avg_output.gif) ![DD Cosine](./assets/cosine_vs_cosine_IOU_avg_output.gif)
+
+![DD Euclidean](./assets/euclidean_vs_euclidean_IOU_avg_output.gif) ![DD Wasserstein](./assets//wasserstein_vs_wasserstein_IOU_avg_output.gif)
