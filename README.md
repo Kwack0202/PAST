@@ -8,19 +8,19 @@
 
 **PAST is a “model-learning-independent system” that does not use the concept of model learning**
 
-## 🛠 System setting
-- **CPU** AMD Ryzen 9 5950X 16-Core Processor
-- **GPU** NVIDIA GeForce RTX 4080
-- **Memory RAM** 128GB
+## 🛠 System
+- **CPU** `AMD Ryzen 9 5950X 16-Core Processor`
+- **GPU** `NVIDIA GeForce RTX 4080`
+- **Memory RAM** `128GB`
 
 **The computational efficiency of PAST is proportional to the CPU's power(Logical processor)**
 
 ## 📑 Usage
 ### Requirments
-- **python version** 3.8 
-- **TA Library** TA_Lib-0.4.24-cp38-cp38-win_amd64.whl
-- **Other packages** Packages in common_imports.py
-- **Futures Data** 1-minute high-frequency trading data (stock indices, individual stocks, etc.)
+- **python version** `3.8`
+- **TA Library** `TA_Lib-0.4.24-cp38-cp38-win_amd64.whl`
+- **Other packages** `Packages in common_imports.py`
+- **Futures Data** `KOSPI200 Futures Data` 1-minute high-frequency trading data (stock indices, individual stocks, etc.)
 
 ### run.py
 - To run the PAST system, the parser arguments must be passed using the `run.py` and `sh files`
@@ -65,9 +65,14 @@ python run.py \
 ## 📊 Backtesting
 #### KOSPI200 futures data
 ![Data distribution](./assets/KOSPI200_Futures_distribution.png) 
+- **Experimental period** 2022.02.10-2024.12.31
+- **Test(Trading)** 2024.01.01-2024.12.31
+- Each point in the Test(Trading) period time series has access to all of the previous time series
 
+
+#### Experimental setup
 - **Window size** (default, 🔴) : 60
-- **Window Sliding** (default) : 5
+- **Window sliding** (default) : 5
 - **Labeling window size** (🟢) : 5, 10, 15, 30, 60 -> **best💡** 15, 30
 - **Select Top N instances** : 1, 3, 5, 10, 20, 30, 50, 100, 200 ... -> **best💡** 1, 3, 30
 
