@@ -65,8 +65,8 @@ python run.py \
 ## 📊 Backtesting
 - **Window size** (default, 🔴) : 60
 - **Window Sliding** (default) : 5
-- **Labeling window size** (🟢) : 5, 10, 15, 30, 60 -> 💡best! 15, 30
-- **Select Top N instances** : 1, 3, 5, 10, 20, 30, 50, 100, 200 ... -> 💡best! 1, 3, 30
+- **Labeling window size** (🟢) : 5, 10, 15, 30, 60 -> 💡**best!** 15, 30
+- **Select Top N instances** : 1, 3, 5, 10, 20, 30, 50, 100, 200 ... -> 💡**best!** 1, 3, 30
 
 
 
