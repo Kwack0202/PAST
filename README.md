@@ -2,7 +2,7 @@
 **PAST : Price Analysis using Similarity Tracking**
 
 ## Concept of PAST
-![Framework](./assets/concept_fig.png)
+![Concept Diagram](./assets/concept_fig.png)
 - **Current Chart** (**C**, 🔴): Historical charts similar to the current window
 - **Future Chart** (**F**, 🟢): Future price movements of the chart (C) browsed based on similarities
 
@@ -63,6 +63,9 @@ python run.py \
 ```
 
 ## 📊 Backtesting
+#### KOSPI200 futures data
+![Data distribution](./assets/KOSPI200_Futures_distribution.png) 
+
 - **Window size** (default, 🔴) : 60
 - **Window Sliding** (default) : 5
 - **Labeling window size** (🟢) : 5, 10, 15, 30, 60 -> **best💡** 15, 30
