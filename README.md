@@ -71,7 +71,7 @@ python run.py \
 
 - **Experimental period** 2022.02.10-2024.12.31
 - **Test(Trading)** 2024.01.01-2024.12.31
-- Each point in the `Test(Trading)` period time series has access to all of the previous time series
+Each point in the `Test(Trading)` period time series has access to all of the previous time series
 
 - **Specifics in data**
 > - As of July 31, 2023, the opening hours of the derivatives market on the Korea Exchange have been accelerated due to changes in the derivatives market system `9 AM -> 8:45 AM`
