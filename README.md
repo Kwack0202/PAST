@@ -20,13 +20,13 @@
 - **python version** `3.8`
 - **TA Library** `TA_Lib-0.4.24-cp38-cp38-win_amd64.whl`
 - **Other packages** `Packages in common_imports.py`
-- **Futures Data** `KOSPI200 Futures Data` 1-minute high-frequency trading data (stock indices, individual stocks, etc.)
+- **Futures Data** `KOSPI200 Futures Data` 1-minute high-frequency trading data
 
 ### run.py
 - To run the PAST system, the parser arguments must be passed using the `run.py` and `sh files`
 - The `sh file` is divided into subfolders and multiple steps within the ./scripts/ folder.
 
-#### The folder structure is as follows:
+#### The scripts folder structure is as follows:
 ```
 ./scripts/
 ├── data/
@@ -61,6 +61,7 @@ python run.py \
     --end_date 2025-01-01 \
     --start_index 0 \
 ```
+![Img sample](./assets/Candlestick_img.png)
 
 ## 📊 Backtesting
 #### KOSPI200 futures data
