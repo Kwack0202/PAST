@@ -141,8 +141,11 @@ Each point in the `Test(Trading)` period time series has access to all of the pr
 ![DD Wasserstein](./assets//wasserstein_vs_wasserstein_IOU_avg_output.gif)
 
 
-![Trading signals](./assets/position_signal.gif) ![Margin](./assets/margin_return.gif)
-
-![DD DIEM](./assets//DIEM_vs_DIEM_IOU_avg_output.gif) ![DD Cosine](./assets/cosine_vs_cosine_IOU_avg_output.gif)
-
-![DD Euclidean](./assets/euclidean_vs_euclidean_IOU_avg_output.gif) ![DD Wasserstein](./assets//wasserstein_vs_wasserstein_IOU_avg_output.gif)
+<div style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 10px;">
+  <img src="./assets/position_signal.gif" alt="Trading signals" style="width:100%;">
+  <img src="./assets/margin_return.gif" alt="Margin" style="width:100%;">
+  <img src="./assets/DIEM_vs_DIEM_IOU_avg_output.gif" alt="DD DIEM" style="width:100%;">
+  <img src="./assets/cosine_vs_cosine_IOU_avg_output.gif" alt="DD Cosine" style="width:100%;">
+  <img src="./assets/euclidean_vs_euclidean_IOU_avg_output.gif" alt="DD Euclidean" style="width:100%;">
+  <img src="./assets/wasserstein_vs_wasserstein_IOU_avg_output.gif" alt="DD Wasserstein" style="width:100%;">
+</div>
