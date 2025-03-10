@@ -141,26 +141,17 @@ Each point in the `Test(Trading)` period time series has access to all of the pr
 ![DD Wasserstein](./assets//wasserstein_vs_wasserstein_IOU_avg_output.gif)
 
 <div class="form-group">
-  <label for="name">Backtesting</label>
-  <div style="width: 100%; overflow: hidden;">
-    <div style="width: 33.33%; float:left; padding: 5px;">
-      <img src="./assets/position_signal.gif" alt="Trading signals" style="width:100%;">
-    </div>
-    <div style="width: 33.33%; float:left; padding: 5px;">
-      <img src="./assets/margin_return.gif" alt="Margin" style="width:100%;">
-    </div>
-    <div style="width: 33.33%; float:left; padding: 5px;">
-      <img src="./assets/DIEM_vs_DIEM_IOU_avg_output.gif" alt="DD DIEM" style="width:100%;">
-    </div>
-    <div style="width: 33.33%; float:left; padding: 5px;">
-      <img src="./assets/cosine_vs_cosine_IOU_avg_output.gif" alt="DD Cosine" style="width:100%;">
-    </div>
-    <div style="width: 33.33%; float:left; padding: 5px;">
-      <img src="./assets/euclidean_vs_euclidean_IOU_avg_output.gif" alt="DD Euclidean" style="width:100%;">
-    </div>
-    <div style="width: 33.33%; float:left; padding: 5px;">
-      <img src="./assets/wasserstein_vs_wasserstein_IOU_avg_output.gif" alt="DD Wasserstein" style="width:100%;">
-    </div>
-    <div style="clear: both;"></div>
-  </div>
+  <label>Backtesting</label>
+  <table>
+    <tr>
+      <td><img src="./assets/position_signal.gif" alt="Trading signals" style="max-width:100%;"></td>
+      <td><img src="./assets/margin_return.gif" alt="Margin" style="max-width:100%;"></td>
+      <td><img src="./assets/DIEM_vs_DIEM_IOU_avg_output.gif" alt="DD DIEM" style="max-width:100%;"></td>
+    </tr>
+    <tr>
+      <td><img src="./assets/cosine_vs_cosine_IOU_avg_output.gif" alt="DD Cosine" style="max-width:100%;"></td>
+      <td><img src="./assets/euclidean_vs_euclidean_IOU_avg_output.gif" alt="DD Euclidean" style="max-width:100%;"></td>
+      <td><img src="./assets/wasserstein_vs_wasserstein_IOU_avg_output.gif" alt="DD Wasserstein" style="max-width:100%;"></td>
+    </tr>
+  </table>
 </div>
