@@ -1,5 +1,6 @@
 # PAST
 **PAST : Price Analysis using Similarity Tracking**
+![Cum full](./assets/final_output.gif)
 
 ## Concept of PAST
 ![Concept Diagram](./assets/concept_fig.png)
@@ -124,7 +125,17 @@ Each point in the `Test(Trading)` period time series has access to all of the pr
 
 ![trading results](./assets/trading_results_plt.png)
 
+### Long/Short Trading Signals
+![Trading signals](./assets/position_signal.gif)
 
-#### Cumulative profit visualization (top: all results, bottom: BEST)
-![Cum full](./assets/final_output.gif)
+### Cumulative profit (top: all results, bottom: BEST)
 ![Cum sample](./assets/cum_result_sample.gif)
+
+### Margin Return
+![Margin](./assets/margin_return.gif)
+
+### Drawdown
+![DD DIEM](./assets//DIEM_vs_DIEM_IOU_avg_output.gif)
+![DD Cosine](./assets/cosine_vs_cosine_IOU_avg_output.gif)
+![DD Euclidean](./assets/euclidean_vs_euclidean_IOU_avg_output.gif)
+![DD Wasserstein](./assets//wasserstein_vs_wasserstein_IOU_avg_output.gif)
