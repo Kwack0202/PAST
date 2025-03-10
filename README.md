@@ -125,7 +125,10 @@ Each point in the `Test(Trading)` period time series has access to all of the pr
 
 ![trading results](./assets/trading_results_plt.png)
 
-### Long/Short Trading Signals
+### Cumulative profit (top: all results, bottom: BEST)
+![Cum sample](./assets/cum_result_sample.gif)
+
+<!-- ### Long/Short Trading Signals
 ![Trading signals](./assets/position_signal.gif)
 
 ### Cumulative profit (top: all results, bottom: BEST)
@@ -138,20 +141,33 @@ Each point in the `Test(Trading)` period time series has access to all of the pr
 ![DD DIEM](./assets//DIEM_vs_DIEM_IOU_avg_output.gif)
 ![DD Cosine](./assets/cosine_vs_cosine_IOU_avg_output.gif)
 ![DD Euclidean](./assets/euclidean_vs_euclidean_IOU_avg_output.gif)
-![DD Wasserstein](./assets//wasserstein_vs_wasserstein_IOU_avg_output.gif)
+![DD Wasserstein](./assets//wasserstein_vs_wasserstein_IOU_avg_output.gif) -->
 
 <div class="form-group">
   <label>Backtesting</label>
-  <table>
+  <table style="border-collapse: collapse; border-spacing: 0; width: 100%;">
     <tr>
-      <td><img src="./assets/position_signal.gif" alt="Trading signals" style="max-width:100%;"></td>
-      <td><img src="./assets/margin_return.gif" alt="Margin" style="max-width:100%;"></td>
-      <td><img src="./assets/DIEM_vs_DIEM_IOU_avg_output.gif" alt="DD DIEM" style="max-width:100%;"></td>
+      <td style="padding: 0; margin: 0;">
+        <img src="./assets/position_signal.gif" alt="Trading signals" style="display: block; width: 100%;">
+      </td>
+      <td style="padding: 0; margin: 0;">
+        <img src="./assets/margin_return.gif" alt="Margin" style="display: block; width: 100%;">
+      </td>
+      <td style="padding: 0; margin: 0;">
+        <img src="./assets/DIEM_vs_DIEM_IOU_avg_output.gif" alt="DD DIEM" style="display: block; width: 100%;">
+      </td>
     </tr>
     <tr>
-      <td><img src="./assets/cosine_vs_cosine_IOU_avg_output.gif" alt="DD Cosine" style="max-width:100%;"></td>
-      <td><img src="./assets/euclidean_vs_euclidean_IOU_avg_output.gif" alt="DD Euclidean" style="max-width:100%;"></td>
-      <td><img src="./assets/wasserstein_vs_wasserstein_IOU_avg_output.gif" alt="DD Wasserstein" style="max-width:100%;"></td>
+      <td style="padding: 0; margin: 0;">
+        <img src="./assets/cosine_vs_cosine_IOU_avg_output.gif" alt="DD Cosine" style="display: block; width: 100%;">
+      </td>
+      <td style="padding: 0; margin: 0;">
+        <img src="./assets/euclidean_vs_euclidean_IOU_avg_output.gif" alt="DD Euclidean" style="display: block; width: 100%;">
+      </td>
+      <td style="padding: 0; margin: 0;">
+        <img src="./assets/wasserstein_vs_wasserstein_IOU_avg_output.gif" alt="DD Wasserstein" style="display: block; width: 100%;">
+      </td>
     </tr>
   </table>
 </div>
+
