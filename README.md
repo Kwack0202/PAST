@@ -171,3 +171,14 @@ Each point in the `Test(Trading)` period time series has access to all of the pr
   </table>
 </div>
 
+<p align="center">
+  <img src="./assets/position_signal.gif" alt="Trading signals" width="33%">
+  <img src="./assets/cosine_vs_cosine_IOU_avg_output.gif" alt="DD Cosine" width="33%">
+  <img src="./assets/DIEM_vs_DIEM_IOU_avg_output.gif" alt="DD DIEM" width="33%">
+</p>
+<p align="center">
+  <img src="./assets/margin_return.gif" alt="Margin" width="33%">
+  <img src="./assets/euclidean_vs_euclidean_IOU_avg_output.gif" alt="DD Euclidean" width="33%">
+  <img src="./assets/wasserstein_vs_wasserstein_IOU_avg_output.gif" alt="DD Wasserstein" width="33%">
+</p>
+
