@@ -143,15 +143,15 @@ Each point in the `Test(Trading)` period time series has access to all of the pr
 ![DD Euclidean](./assets/euclidean_vs_euclidean_IOU_avg_output.gif)
 ![DD Wasserstein](./assets//wasserstein_vs_wasserstein_IOU_avg_output.gif) -->
 
+### Backtesting summary
 <div class="form-group">
-  <label>Backtesting</label>
   <table style="border-collapse: collapse; border-spacing: 0; width: 100%;">
     <tr>
       <td style="padding: 0; margin: 0;">
         <img src="./assets/position_signal.gif" alt="Trading signals" style="display: block; width: 100%;">
       </td>
       <td style="padding: 0; margin: 0;">
-        <img src="./assets/margin_return.gif" alt="Margin" style="display: block; width: 100%;">
+        <img src="./assets/cosine_vs_cosine_IOU_avg_output.gif" alt="DD Cosine" style="display: block; width: 100%;">
       </td>
       <td style="padding: 0; margin: 0;">
         <img src="./assets/DIEM_vs_DIEM_IOU_avg_output.gif" alt="DD DIEM" style="display: block; width: 100%;">
@@ -159,7 +159,7 @@ Each point in the `Test(Trading)` period time series has access to all of the pr
     </tr>
     <tr>
       <td style="padding: 0; margin: 0;">
-        <img src="./assets/cosine_vs_cosine_IOU_avg_output.gif" alt="DD Cosine" style="display: block; width: 100%;">
+        <img src="./assets/margin_return.gif" alt="Margin" style="display: block; width: 100%;">
       </td>
       <td style="padding: 0; margin: 0;">
         <img src="./assets/euclidean_vs_euclidean_IOU_avg_output.gif" alt="DD Euclidean" style="display: block; width: 100%;">
