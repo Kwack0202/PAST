@@ -141,15 +141,26 @@ Each point in the `Test(Trading)` period time series has access to all of the pr
 ![DD Wasserstein](./assets//wasserstein_vs_wasserstein_IOU_avg_output.gif)
 
 <div class="form-group">
-  <label>Backtesting</label>
-  <div style="overflow: hidden; margin-bottom: 10px;">
-    <img src="./assets/position_signal.gif" alt="Trading signals" style="height:200px; width:33%; float:left;">
-    <img src="./assets/cosine_vs_cosine_IOU_avg_output.gif" alt="Margin" style="height:200px; width:33%; float:left;">
-    <img src="./assets/DIEM_vs_DIEM_IOU_avg_output.gif" alt="DD DIEM" style="height:200px; width:33%; float:left;">
-  </div>
-  <div style="overflow: hidden;">
-    <img src="./assets/margin_return.gif" alt="DD Cosine" style="height:200px; width:33%; float:left;">
-    <img src="./assets/euclidean_vs_euclidean_IOU_avg_output.gif" alt="DD Euclidean" style="height:200px; width:33%; float:left;">
-    <img src="./assets/wasserstein_vs_wasserstein_IOU_avg_output.gif" alt="DD Wasserstein" style="height:200px; width:33%; float:left;">
+  <label for="name">Backtesting</label>
+  <div style="width: 100%; overflow: hidden;">
+    <div style="width: 33.33%; float:left; padding: 5px;">
+      <img src="./assets/position_signal.gif" alt="Trading signals" style="width:100%;">
+    </div>
+    <div style="width: 33.33%; float:left; padding: 5px;">
+      <img src="./assets/margin_return.gif" alt="Margin" style="width:100%;">
+    </div>
+    <div style="width: 33.33%; float:left; padding: 5px;">
+      <img src="./assets/DIEM_vs_DIEM_IOU_avg_output.gif" alt="DD DIEM" style="width:100%;">
+    </div>
+    <div style="width: 33.33%; float:left; padding: 5px;">
+      <img src="./assets/cosine_vs_cosine_IOU_avg_output.gif" alt="DD Cosine" style="width:100%;">
+    </div>
+    <div style="width: 33.33%; float:left; padding: 5px;">
+      <img src="./assets/euclidean_vs_euclidean_IOU_avg_output.gif" alt="DD Euclidean" style="width:100%;">
+    </div>
+    <div style="width: 33.33%; float:left; padding: 5px;">
+      <img src="./assets/wasserstein_vs_wasserstein_IOU_avg_output.gif" alt="DD Wasserstein" style="width:100%;">
+    </div>
+    <div style="clear: both;"></div>
   </div>
 </div>
