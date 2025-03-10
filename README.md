@@ -141,9 +141,15 @@ Each point in the `Test(Trading)` period time series has access to all of the pr
 ![DD Wasserstein](./assets//wasserstein_vs_wasserstein_IOU_avg_output.gif)
 
 <div class="form-group">
-    <label th:for="name">Backtesting</label>
-        <div style="height: 200px; width: 500px;">
-                <img style="height: 100%; width: 50%; float:left;" src="./assets/position_signal.gif">
-                <img style="height: 100%; width: 50%; float:left;" src="./assets/margin_return.gif">
-        </div>
+  <label>Backtesting</label>
+  <div style="overflow: hidden; margin-bottom: 10px;">
+    <img src="./assets/position_signal.gif" alt="Trading signals" style="height:200px; width:33.33%; float:left;">
+    <img src="./assets/margin_return.gif" alt="Margin" style="height:200px; width:33.33%; float:left;">
+    <img src="./assets/DIEM_vs_DIEM_IOU_avg_output.gif" alt="DD DIEM" style="height:200px; width:33.33%; float:left;">
+  </div>
+  <div style="overflow: hidden;">
+    <img src="./assets/cosine_vs_cosine_IOU_avg_output.gif" alt="DD Cosine" style="height:200px; width:33.33%; float:left;">
+    <img src="./assets/euclidean_vs_euclidean_IOU_avg_output.gif" alt="DD Euclidean" style="height:200px; width:33.33%; float:left;">
+    <img src="./assets/wasserstein_vs_wasserstein_IOU_avg_output.gif" alt="DD Wasserstein" style="height:200px; width:33.33%; float:left;">
+  </div>
 </div>
