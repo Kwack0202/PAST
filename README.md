@@ -172,20 +172,29 @@ Each point in the `Test(Trading)` period time series has access to all of the pr
 </div>
 
 
-<!-- 첫 번째 행 -->
-<div style="display: flex; justify-content: center;">
-  <img src="./assets/position_signal.gif" alt="Trading signals" style="width: 50%;">
-  <img src="./assets/margin_return.gif" alt="Margin" style="width: 50%;">
-</div>
-
-<!-- 두 번째 행 -->
-<div style="display: flex; justify-content: center;">
-  <img src="./assets/cosine_vs_cosine_IOU_avg_output.gif" alt="DD Cosine" style="width: 50%;">
-  <img src="./assets/DIEM_vs_DIEM_IOU_avg_output.gif" alt="DD DIEM" style="width: 50%;">
-</div>
-
-<!-- 세 번째 행 -->
-<div style="display: flex; justify-content: center;">
-  <img src="./assets/euclidean_vs_euclidean_IOU_avg_output.gif" alt="DD Euclidean" style="width: 50%;">
-  <img src="./assets/wasserstein_vs_wasserstein_IOU_avg_output.gif" alt="DD Wasserstein" style="width: 50%;">
-</div>
+<table style="width:100%; border-collapse: collapse;">
+  <tr>
+    <td style="text-align: center;">
+      <img src="./assets/position_signal.gif" alt="Trading signals" style="width:90%;">
+    </td>
+    <td style="text-align: center;">
+      <img src="./assets/margin_return.gif" alt="Margin" style="width:90%;">
+    </td>
+  </tr>
+  <tr>
+    <td style="text-align: center;">
+      <img src="./assets/cosine_vs_cosine_IOU_avg_output.gif" alt="DD Cosine" style="width:90%;">
+    </td>
+    <td style="text-align: center;">
+      <img src="./assets/DIEM_vs_DIEM_IOU_avg_output.gif" alt="DD DIEM" style="width:90%;">
+    </td>
+  </tr>
+  <tr>
+    <td style="text-align: center;">
+      <img src="./assets/euclidean_vs_euclidean_IOU_avg_output.gif" alt="DD Euclidean" style="width:90%;">
+    </td>
+    <td style="text-align: center;">
+      <img src="./assets/wasserstein_vs_wasserstein_IOU_avg_output.gif" alt="DD Wasserstein" style="width:90%;">
+    </td>
+  </tr>
+</table>
