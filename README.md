@@ -91,7 +91,7 @@ Each point in the `Test(Trading)` period time series has access to all of the pr
 - **Similarity types**
     - Candlestick image feature similarity → DIEM, Cosine, Euclidean, Wasserstein
     - Bollinger band area IOU score → IOU
-    - Numeric feaure → Dtw
+    - Numeric feaure → DTW
 
 
 #### Summary of trading performance by similarity type
