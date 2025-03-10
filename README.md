@@ -75,9 +75,9 @@ python run.py \
 Each point in the `Test(Trading)` period time series has access to all of the previous time series
 
 - **Specifics in data**
-> - As of July 31, 2023, the opening hours of the derivatives market on the Korea Exchange have been accelerated due to changes in the derivatives market system `9 AM -> 8:45 AM`
-> - Some days the market closes early at `3:20`
-> - First trading day of the new year will have a 1-hour delayed opening time `2023Y: 9 AM -> 10 AM` `2024Y: 8:45 AM -> 9:45 AM`
+> 1. As of July 31, 2023, the opening hours of the derivatives market on the Korea Exchange have been accelerated due to changes in the derivatives market system `9 AM -> 8:45 AM`
+> 2. Some days the market closes early at `3:20`
+> 3. First trading day of the new year will have a 1-hour delayed opening time `2023Y: 9 AM -> 10 AM` `2024Y: 8:45 AM -> 9:45 AM`
 
 #### Experimental setup
 - **Window size** (default, 🔴)
@@ -85,13 +85,13 @@ Each point in the `Test(Trading)` period time series has access to all of the pr
 - **Window sliding** (default)
     - 5
 - **Labeling window size** (🟢) 
-    - 5, 10, 15, 30, 60 -> **best💡** 15, 30
+    - 5, 10, 15, 30, 60 → **best💡** 15, 30
 - **Select Top N instances**
-    - 1, 3, 5, 10, 20, 30, 50, 100, 200 ... -> **best💡** 1, 3, 30
+    - 1, 3, 5, 10, 20, 30, 50, 100, 200 ... → **best💡** 1, 3, 30
 - **Similarity types**
-    - Candlestick image feature similarity - DIEM, Cosine, Euclidean, Wasserstein
-    - Bollinger band area IOU score - IOU
-    - Numeric feaure - Dtw
+    - Candlestick image feature similarity → DIEM, Cosine, Euclidean, Wasserstein
+    - Bollinger band area IOU score → IOU
+    - Numeric feaure → Dtw
 
 
 #### Summary of trading performance by similarity type
