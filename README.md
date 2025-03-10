@@ -147,26 +147,26 @@ Each point in the `Test(Trading)` period time series has access to all of the pr
 <table style="width:100%; border-collapse: collapse;">
   <tr>
     <td style="text-align: center;">
-      <img src="./assets/position_signal.gif" alt="Trading signals" style="width:90%;">
+      <img src="./assets/position_signal.gif" alt="Trading signals" style="width:100%;">
     </td>
     <td style="text-align: center;">
-      <img src="./assets/margin_return.gif" alt="Margin" style="width:90%;">
-    </td>
-  </tr>
-  <tr>
-    <td style="text-align: center;">
-      <img src="./assets/cosine_vs_cosine_IOU_avg_output.gif" alt="DD Cosine" style="width:90%;">
-    </td>
-    <td style="text-align: center;">
-      <img src="./assets/DIEM_vs_DIEM_IOU_avg_output.gif" alt="DD DIEM" style="width:90%;">
+      <img src="./assets/margin_return.gif" alt="Margin" style="width:100%;">
     </td>
   </tr>
   <tr>
     <td style="text-align: center;">
-      <img src="./assets/euclidean_vs_euclidean_IOU_avg_output.gif" alt="DD Euclidean" style="width:90%;">
+      <img src="./assets/cosine_vs_cosine_IOU_avg_output.gif" alt="DD Cosine" style="width:100%;">
     </td>
     <td style="text-align: center;">
-      <img src="./assets/wasserstein_vs_wasserstein_IOU_avg_output.gif" alt="DD Wasserstein" style="width:90%;">
+      <img src="./assets/DIEM_vs_DIEM_IOU_avg_output.gif" alt="DD DIEM" style="width:100%;">
+    </td>
+  </tr>
+  <tr>
+    <td style="text-align: center;">
+      <img src="./assets/euclidean_vs_euclidean_IOU_avg_output.gif" alt="DD Euclidean" style="width:100%;">
+    </td>
+    <td style="text-align: center;">
+      <img src="./assets/wasserstein_vs_wasserstein_IOU_avg_output.gif" alt="DD Wasserstein" style="width:100%;">
     </td>
   </tr>
 </table>
