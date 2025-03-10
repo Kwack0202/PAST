@@ -82,16 +82,20 @@ Each point in the `Test(Trading)` period time series has access to all of the pr
 #### Experimental setup
 - **Window size** (default, 🔴)
     - 60
+
 - **Window sliding** (default)
     - 5
+
 - **Labeling window size** (🟢) 
     - 5  10  15  30  60 → **best💡** `15 30`
+
 - **Select Top N instances**
     - 1  3  5  10  20  30  50  100  200 ... → **best💡** `1 3 30`
+
 - **Similarity types**
-    - Candlestick image feature similarity → DIEM, Cosine, Euclidean, Wasserstein
-    - Bollinger band area IOU score → IOU
-    - Numeric feaure → DTW
+    - Candlestick image feature similarity → `DIEM` `Cosine` `Euclidean` `Wasserstein`
+    - Bollinger band area IOU score → `IOU`
+    - Numeric feaure → `DTW`
 
 
 #### Summary of trading performance by similarity type
@@ -114,8 +118,5 @@ Each point in the `Test(Trading)` period time series has access to all of the pr
 
 
 #### Cumulative profit visualization (top: all results, bottom: BEST)
-<div align="center">
-    <img src="./assets/final_output.gif" />
-    <br>
-    <img src="./assets/cum_result_sample.gif" />
-</div>
+![Cum full](./assets/final_output.gif)
+![Cum sample](./assets/cum_result_sample.gif)
