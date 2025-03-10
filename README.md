@@ -99,13 +99,13 @@ Each point in the `Test(Trading)` period time series has access to all of the pr
 
 
 ## 📈 Backtesting 📉
-#### Summary of trading performance by similarity type
-- trading metric
-    1. **PR : payoff ratio**
-    2. **PF : profit factor**
-    3. **CR : Cumulative return (%)**
-    4. **MRR : Maximum Realized Return (%)**
-    5. **MDD : MaxDrawdown (%)**
+### Summary of trading performance by similarity type
+#### trading metric
+- **PR : payoff ratio**
+- **PF : profit factor**
+- **CR : Cumulative return (%)**
+- **MRR : Maximum Realized Return (%)**
+- **MDD : MaxDrawdown (%)**
 
 | **Category**   |      **similarity**     | **total PR**          | **total PF**           | **long PR**           | **long PF**           | **short PR**          | **short PF**          | **CR**                   | **MRR**                   | **MDD**              |
 |----------------|-------------------------|-----------------------|------------------------|-----------------------|-----------------------|-----------------------|-----------------------|--------------------------|---------------------------|----------------------|
