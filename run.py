@@ -354,7 +354,7 @@ def main():
         tasks = [
             (args.merged_path, args.label_dir, args.stock_csv, top_n, args.seq_len, args.window_len, future_point, sim_col)
             for top_n in args.top_n_list
-            for future_point in [5, 10, 15, 30, 60]  # pred.py에 명시된 future_points
+            for future_point in [1]  # pred.py에 명시된 future_points
             for sim_col in similarity_cols
         ]
 
@@ -459,7 +459,7 @@ def main():
     elif args.task_name == "plot_cumulative_profit":
         # top N과 window size 값 정의
         top_n_values = [1, 3, 5, 10, 20, 30, 50, 100, 200]
-        window_sizes = [5, 10, 15, 30, 60]
+        window_sizes = [1, 5, 10, 15, 30, 60]
         similarity_types = ['dtw_similarity', 'IOU', 'cosine', 'cosine_IOU_avg', 'DIEM', 'DIEM_IOU_avg', 
                             'euclidean', 'euclidean_IOU_avg', 'wasserstein', 'wasserstein_IOU_avg']
 
@@ -490,7 +490,7 @@ def main():
     elif args.task_name == "plot_drawdown":
         # top N과 window size 값 정의
         top_n_values = [1, 3, 5, 10, 20, 30, 50, 100, 200]
-        window_sizes = [5, 10, 15, 30, 60]
+        window_sizes = [1, 5, 10, 15, 30, 60]
 
         # Drawdown 시각화 (모든 top N과 window size 조합)
         chunk_args_drawdown = [(top_n, window_size, args.simulation_dir, args.plot_dir) 

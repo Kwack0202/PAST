@@ -1,10 +1,20 @@
 from common_imports import *
 
-def analyze_trend(data, phase, index):
+def analyze_trend(data, phase, index, current_close=None):
     if data.empty:
-        return None
+        return None                
     
     pricing = data['close']
+    
+    if len(data) == 1 and phase == 'future' and current_close is not None:
+        future_close = pricing.iloc[0]
+        trend = 'up' if future_close > current_close else 'down'
+        return {'index': f'{index}',
+                'date': data['time'].dt.date.iloc[-1], 
+                'time': data['time'].dt.time.iloc[-1],
+                'trend': trend, 
+                'phase': phase}
+
     x = np.arange(len(pricing))
     y = pricing.values
     z = np.polyfit(x, y, 1)

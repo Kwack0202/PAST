@@ -104,23 +104,34 @@ def process_trading_data(pred_file, output_dir='./Backtesting/simulation/'):
         merged_df['portfolio_performance'] = merged_df['Cumulative_Profit'] + initial_investment
         merged_df['Portfolio_Performance_Return'] = ((merged_df['portfolio_performance'] - initial_investment) / initial_investment) * 100
 
-        # Drawdown 계산
-        max_pp = 0
-        max_pp_rate = 0
-        
-        for index, row in merged_df.iterrows():
-            if row['Cumulative_Profit'] > max_pp:
-                max_pp = row['Cumulative_Profit']
-            merged_df.at[index, 'Drawdown'] = -(max_pp - row['Cumulative_Profit']) if row['Cumulative_Profit'] != 0 else 0
-
-            if row['Cumulative_Return'] > max_pp_rate:
-                max_pp_rate = row['Cumulative_Return']
-            merged_df.at[index, 'Drawdown_rate'] = -(max_pp_rate - row['Cumulative_Return']) if row['Cumulative_Return'] != 0 else 0
-
         signal_results.append(merged_df)
     
     final_trading_df = pd.concat(signal_results, ignore_index=True)
     
+    # Drawdown 계산
+    final_trading_df['Drawdown'] = 0.0
+    final_trading_df['Drawdown_rate'] = 0.0
+    peak_profit = final_trading_df['Cumulative_Profit'].iloc[0]
+    peak_profit_rate = final_trading_df['Cumulative_Return'].iloc[0]
+    
+    for index, row in final_trading_df.iterrows():
+        current_profit = row['Cumulative_Profit']
+        # Update peak profit if current profit is higher
+        if current_profit > peak_profit:
+            peak_profit = current_profit
+        # Calculate drawdown as the difference from peak to current
+        drawdown = -(peak_profit - current_profit)
+        final_trading_df.at[index, 'Drawdown'] = drawdown
+    
+    for index, row in final_trading_df.iterrows():
+        current_profit_rate = row['Cumulative_Return']
+        # Update peak profit if current profit is higher
+        if current_profit_rate > peak_profit_rate:
+            peak_profit_rate = current_profit_rate
+        # Calculate drawdown as the difference from peak to current
+        drawdown_rate = -(peak_profit_rate - current_profit_rate)
+        final_trading_df.at[index, 'Drawdown_rate'] = drawdown_rate
+        
     column_names = [
         "time", "open", "high", "low", "close", "volume", "position",
         "Unrealized_Profit", "Unrealized_Return", "Margin_Profit", "Margin_Return",

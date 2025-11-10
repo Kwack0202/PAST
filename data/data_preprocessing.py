@@ -179,21 +179,20 @@ def label_data(output_dir, stock_csv, seq_len, window_len, future_points, end_da
                 break
 
             candle_data = pd.DataFrame(group).reset_index(drop=True)
-            
+                   
             for start in range(0, len(candle_data) - seq_len + window_len, window_len):
                 end = start + seq_len
-                future_needed = window_len * future_point 
                 
                 current_data = candle_data.iloc[start:end]
                 
                 available_future = candle_data.iloc[end:]
                 
-                if len(available_future) >= future_needed:
-                    future_data = candle_data.iloc[end:end+future_needed]
+                if len(available_future) >= future_point:
+                    future_data = candle_data.iloc[end:end+future_point]
                 
                 else:
                     future_data_current = available_future
-                    remaining = future_needed - len(future_data_current)
+                    remaining = future_point - len(future_data_current)
                     if trading_day < len(trading_days) - 1:
                         _, next_day_group = trading_days[trading_day + 1]
                         next_day_data = pd.DataFrame(next_day_group).reset_index(drop=True)
@@ -204,7 +203,7 @@ def label_data(output_dir, stock_csv, seq_len, window_len, future_points, end_da
                 
                 # ===========================================================================
                 current_result = analyze_trend(current_data, 'current', image_index)
-                future_result = analyze_trend(future_data, 'future', image_index)    
+                future_result = analyze_trend(future_data, 'future', image_index, current_data['close'].iloc[-1] if future_point == 1 else None)    
                 
                 if current_result:
                     results.append(current_result)    
@@ -218,7 +217,7 @@ def label_data(output_dir, stock_csv, seq_len, window_len, future_points, end_da
         future_df = result_df[result_df['phase'] == 'future'].reset_index(drop=True)
         
         current_df['date'] = pd.to_datetime(current_df['date'])
-        current_df.to_csv(os.path.join(output_dir, f"{future_needed}_current.csv"), encoding='utf-8', index=False)
+        current_df.to_csv(os.path.join(output_dir, f"{future_point}_current.csv"), encoding='utf-8', index=False)
 
         future_df['date'] = pd.to_datetime(future_df['date'])
-        future_df.to_csv(os.path.join(output_dir, f"{future_needed}_future.csv"), encoding='utf-8', index=False)
+        future_df.to_csv(os.path.join(output_dir, f"{future_point}_future.csv"), encoding='utf-8', index=False)
